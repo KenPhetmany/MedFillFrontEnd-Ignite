@@ -10,7 +10,18 @@ import { createStackNavigator } from "@react-navigation/stack"
 import { MainNavigator } from "./main-navigator"
 import { color } from "../theme"
 
+import { WelcomeScreen, LoginScreen, RegisterScreen, ResetPasswordScreen } from "../screens"
+
+
 /**
+ * 
+ *       <Stack.Screen
+        name="mainStack"
+        component={MainNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
  *
@@ -21,7 +32,12 @@ import { color } from "../theme"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type RootParamList = {
+  welcome: undefined
+
   mainStack: undefined
+  login: undefined
+  register: undefined
+  resetPassword: undefined
 }
 
 const Stack = createStackNavigator<RootParamList>()
@@ -34,13 +50,9 @@ const RootStack = () => {
         headerShown: false,
       }}
     >
-      <Stack.Screen
-        name="mainStack"
-        component={MainNavigator}
-        options={{
-          headerShown: false,
-        }}
-      />
+      <Stack.Screen name="login" component={LoginScreen} />
+      <Stack.Screen name="register" component={RegisterScreen} />
+      <Stack.Screen name="resetPassword" component={ResetPasswordScreen} />
     </Stack.Navigator>
   )
 }
