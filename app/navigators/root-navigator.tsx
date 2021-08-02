@@ -9,19 +9,17 @@ import { NavigationContainer, NavigationContainerRef } from "@react-navigation/n
 import { createStackNavigator } from "@react-navigation/stack"
 import { MainNavigator } from "./main-navigator"
 import { color } from "../theme"
+import { observer } from "mobx-react-lite"
+import firebase from "firebase/app";
+import "firebase/auth";
 
+import { useStores } from "../models"
 import { WelcomeScreen, LoginScreen, RegisterScreen, ResetPasswordScreen } from "../screens"
 
 
 /**
  * 
- *       <Stack.Screen
-        name="mainStack"
-        component={MainNavigator}
-        options={{
-          headerShown: false,
-        }}
-      />
+ *       
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
  *
@@ -42,7 +40,9 @@ export type RootParamList = {
 
 const Stack = createStackNavigator<RootParamList>()
 
-const RootStack = () => {
+const RootStack = observer(() => {
+  const {userStore } = useStores();
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -50,12 +50,26 @@ const RootStack = () => {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="login" component={LoginScreen} />
-      <Stack.Screen name="register" component={RegisterScreen} />
-      <Stack.Screen name="resetPassword" component={ResetPasswordScreen} />
+      {userStore.isAuthenticated ? (
+        <Stack.Screen
+        name="mainStack"
+        component={MainNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
+      ) :(
+        <>
+        <Stack.Screen name="login" component={LoginScreen} />
+        <Stack.Screen name="register" component={RegisterScreen} />
+        <Stack.Screen name="resetPassword" component={ResetPasswordScreen} />
+        </>
+      )
+    }
+
     </Stack.Navigator>
   )
-}
+})
 
 export const RootNavigator = React.forwardRef<
   NavigationContainerRef,

@@ -1,4 +1,7 @@
+/* eslint-disable no-cond-assign */
 import { flow, Instance, SnapshotOut, types } from "mobx-state-tree"
+import Firebase from './../../config/Firebase';
+
 
 /**
  * Model description here for TypeScript hints.
@@ -9,47 +12,47 @@ export const UserModel = types
     email: types.maybe(types.string),
     password: types.maybe(types.string),
     status: types.maybe(types.string),
-  })
-  .actions((self) => ({
+    isAuthenticated: types.optional(types.boolean, false),
+
+  }).actions(self =>({
+    setAuthenticated(value: boolean) {
+      self.isAuthenticated = value
+    },
     setEmail(newEmail: string) {
       self.email = newEmail
   },
   setPassword(newPassword: string) {
     self.password = newPassword
-},
-    login: flow(function* login(creds){
-      self.status = "PENDING"
+  },
+}))
+  .actions((self) => ({
+    login: flow(function*() {
+        Firebase.auth().signInWithEmailAndPassword(self.email, self.password)
+        .then((userCredential) => {
+          // Signed in 
+          self.setAuthenticated(true)
+        })
+        .catch((error) => {
+          self.status = error.message;
+          // ..
+        });
+      }),
+    logout: flow(function*() {
+      Firebase.auth().signOut().then(() => {
+        // Sign-out successful.
+        self.setAuthenticated(false)
+      }).catch((error) => {
+        self.status = error.message;
+      });
+    }),
+    register: flow(function*() {
       try {
-       console.log(self.email); 
-       console.log(self.password);
-       self.status="LOGGED_IN";
-      } catch (e){
-        console.log(e); 
-        self.status="FAILED"
+        Firebase.auth().createUserWithEmailAndPassword(self.email, self.password)
+      } catch (err) {
+        self.status=err.message;
       }
     }),
-    register: flow(function* register(creds){
-      self.status = "PENDING"
-      try {
-       console.log(self.email); 
-       console.log(self.password);
-       self.status="LOGGED_IN";
-      } catch (e){
-        console.log(e); 
-        self.status="FAILED"
-      }
-    }),
-    logout: flow(function* logout() {
-      try {
-        console.log(self.email);
-        self.status="LOGGED_OUT";
-      } catch (e) {
-        console.error(e)
-        self.status="FAILED"
-      }
-    })
-    
-  })) // eslint-disable-line @typescript-eslint/no-unused-vars
+  }))
 
 type UserType = Instance<typeof UserModel>
 export interface User extends UserType {}

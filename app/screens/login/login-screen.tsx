@@ -35,7 +35,11 @@ export const LoginScreen = observer(function LoginScreen() {
       <TextField label="Please enter your password!" onChangeText={e => userStore.setPassword(e)} />
       <Button
       text="Login"
-          onPress={() => userStore.login}
+          onPress={() => userStore.login()}
+        />
+      <Button
+      text="test"
+          onPress={() => alert(userStore.status)}
         />
       <Button
       text="Register a new Account"
