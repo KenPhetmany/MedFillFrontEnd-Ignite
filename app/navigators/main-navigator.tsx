@@ -6,13 +6,16 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { WelcomeScreen, DemoScreen, DemoListScreen, HomeScreen } from "../screens"
+import  {HomeScreen, SettingsScreen, ProfileScreen, ShoppingCartScreen, PrescribedOrdersScreen}  from "../screens"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from '@react-navigation/native';
+
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
  *
- * If no params are allowed, pass through `undefined`. Generally speaking, we
+ * If no params are allowed, pass through `undefind`. Generally speaking, we
  * recommend using your MobX-State-Tree store(s) to keep application state
  * rather than passing state through navigation params.
  *
@@ -22,24 +25,23 @@ import { WelcomeScreen, DemoScreen, DemoListScreen, HomeScreen } from "../screen
  */
 export type PrimaryParamList = {
   welcome: undefined
-  demo: undefined
-  demoList: undefined
   home: undefined
+  profile: undefined
+  shoppingCart: undefined
+  settings: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createStackNavigator<PrimaryParamList>()
+const Stack = createStackNavigator<PrimaryParamList>();
+const Tab = createBottomTabNavigator();
 
-export function MainNavigator() {
+export const MainNavigator = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        cardStyle: { backgroundColor: "transparent" },
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="home" component={HomeScreen} />
-    </Stack.Navigator>
+      <Tab.Navigator>
+      <Tab.Screen name="home" component={HomeScreen}/>
+      <Tab.Screen name="shoppingCart" component={ShoppingCartScreen}/>
+      <Tab.Screen name="profile" component={ProfileScreen}/>
+    </Tab.Navigator>
   )
 }
 
@@ -52,5 +54,5 @@ export function MainNavigator() {
  *
  * `canExit` is used in ./app/app.tsx in the `useBackButtonHandler` hook.
  */
-const exitRoutes = ["welcome"]
+const exitRoutes = ["welcom"]
 export const canExit = (routeName: string) => exitRoutes.includes(routeName)

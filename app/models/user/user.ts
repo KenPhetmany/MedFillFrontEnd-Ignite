@@ -27,15 +27,15 @@ export const UserModel = types
 }))
   .actions((self) => ({
     login: flow(function*() {
-        Firebase.auth().signInWithEmailAndPassword(self.email, self.password)
+      self.setAuthenticated(true)
+       /* Firebase.auth().signInWithEmailAndPassword(self.email, self.password)
         .then((userCredential) => {
           // Signed in 
-          self.setAuthenticated(true)
         })
         .catch((error) => {
           self.status = error.message;
           // ..
-        });
+        }); */
       }),
     logout: flow(function*() {
       Firebase.auth().signOut().then(() => {
