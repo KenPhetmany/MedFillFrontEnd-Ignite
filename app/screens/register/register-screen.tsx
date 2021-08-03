@@ -8,7 +8,7 @@ import { Screen, Text, Button, TextField } from "../../components"
 import { color } from "../../theme"
 
 const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
+  backgroundColor: color.palette.pink,
   flex: 1,
 }
 
