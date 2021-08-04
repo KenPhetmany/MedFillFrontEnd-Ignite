@@ -6,9 +6,11 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import  {HomeScreen, SettingsScreen, ProfileScreen, ShoppingCartScreen, PrescribedOrdersScreen}  from "../screens"
+import  {HomeScreen, SettingsScreen, ProfileScreen, ShoppingCartScreen, PrescribedOrdersScreen, ContactUsScreen}  from "../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from '@react-navigation/native';
+import { FaqScreen } from './../screens/faq/faq-screen';
+import { FindAChemistScreen } from './../screens/find-a-chemist/find-a-chemist-screen';
 
 
 /**
@@ -29,18 +31,37 @@ export type PrimaryParamList = {
   profile: undefined
   shoppingCart: undefined
   settings: undefined
+  faq: undefined
+  contactUs: undefined
+  presciptionOrders: undefined 
+  findAChemist: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createStackNavigator<PrimaryParamList>();
 const Tab = createBottomTabNavigator();
+const ProfileStack = createStackNavigator();
+const HomeStack= createStackNavigator();
+
+
+const ProfileStackScreen = () => {
+  return (
+    <ProfileStack.Navigator>
+    <ProfileStack.Screen name="profile" component={ProfileScreen}/>
+    <ProfileStack.Screen name="findAChemist" component={FindAChemistScreen}/>
+    <ProfileStack.Screen name="prescriptionOrders" component={PrescribedOrdersScreen}/>
+    <ProfileStack.Screen name="settings" component={SettingsScreen}/>
+    <ProfileStack.Screen name="faq" component={FaqScreen}/>
+    <ProfileStack.Screen name="contactUs" component={ContactUsScreen}/>
+  </ProfileStack.Navigator>
+    )
+}
 
 export const MainNavigator = () => {
   return (
       <Tab.Navigator>
       <Tab.Screen name="home" component={HomeScreen}/>
       <Tab.Screen name="shoppingCart" component={ShoppingCartScreen}/>
-      <Tab.Screen name="profile" component={ProfileScreen}/>
+      <Tab.Screen name="profile" component={ProfileStackScreen}/>
     </Tab.Navigator>
   )
 }
