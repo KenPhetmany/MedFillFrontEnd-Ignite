@@ -6,7 +6,7 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import  {HomeScreen, SettingsScreen, ProfileScreen, ShoppingCartScreen, PrescribedOrdersScreen, ContactUsScreen}  from "../screens"
+import  {HomeScreen, SettingsScreen, ProfileScreen, ShoppingCartScreen, PrescribedOrdersScreen, ContactUsScreen, AddAPatientScreen}  from "../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from '@react-navigation/native';
 import { FaqScreen } from './../screens/faq/faq-screen';
@@ -35,12 +35,13 @@ export type PrimaryParamList = {
   contactUs: undefined
   presciptionOrders: undefined 
   findAChemist: undefined
+  addAPatient: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Tab = createBottomTabNavigator();
 const ProfileStack = createStackNavigator();
-const HomeStack= createStackNavigator();
+const HomeStack = createStackNavigator();
 
 
 const ProfileStackScreen = () => {
@@ -56,12 +57,20 @@ const ProfileStackScreen = () => {
     )
 }
 
+const HomeStackScreen = () => {
+  return(
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="home" component={HomeScreen}/>
+  </HomeStack.Navigator>
+    )
+}
+
 export const MainNavigator = () => {
   return (
       <Tab.Navigator>
-      <Tab.Screen name="home" component={HomeScreen}/>
-      <Tab.Screen name="shoppingCart" component={ShoppingCartScreen}/>
-      <Tab.Screen name="profile" component={ProfileStackScreen}/>
+      <Tab.Screen name="home" component={HomeStackScreen}/>
+      <Tab.Screen name="findAChemist" component={FindAChemistScreen}/>
+      <Tab.Screen name="addAPatient" component={AddAPatientScreen}/>
     </Tab.Navigator>
   )
 }

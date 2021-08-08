@@ -6,26 +6,11 @@ import { ViewStyle, View } from "react-native"
 import { color } from "../../theme"
 import {
   Header,
-  BulletItem,
   Button,
-  Text,
   Screen,
   TextField,
 } from "../../components"
-
-const ROOT: ViewStyle = {
-  backgroundColor: color.palette.pink,
-}
-
-const CARD: ViewStyle = {
-  backgroundColor: color.palette.darkerPink,
-  margin: 10
-}
-
-const FORM: ViewStyle = {
-  alignItems: 'center',
-  justifyContent:'center',
-}
+import { ROOT, CARD, FORM } from './../../theme/coreStyles';
 
 const FORMBUTTONS: ViewStyle = {
   flex: 2,
