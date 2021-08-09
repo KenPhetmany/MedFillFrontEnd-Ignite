@@ -38,7 +38,7 @@ const FORMBUTTONS: ViewStyle = {
 export const LoginScreen = observer(function LoginScreen() {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
-  const { userStore } = useStores()
+  const { user } = useStores()
 
   // Pull in navigation via hook
   // const navigation = useNavigation()
@@ -49,13 +49,13 @@ export const LoginScreen = observer(function LoginScreen() {
       <Header headerText="Welcome to Medfill"/>
       <View style={CARD}>
         <View style={FORM}>
-      <TextField label="Please enter your email!"  onChangeText={e => userStore.setEmail(e)} />
-      <TextField label="Please enter your password!" onChangeText={e => userStore.setPassword(e)} />
+      <TextField label="Please enter your email!"  onChangeText={e => user.setEmail(e)} />
+      <TextField label="Please enter your password!" onChangeText={e => user.setPassword(e)} />
         </View>
         <View style={FORMBUTTONS}>
       <Button
       text="Login"
-      onPress={() => userStore.login()}
+      onPress={() => user.login()}
       />
       <Button
       text="Register a new Account"
