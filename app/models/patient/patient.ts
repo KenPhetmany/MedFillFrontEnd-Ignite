@@ -12,7 +12,23 @@ export const PatientModel = types
     dob: types.maybe(types.Date),
     sex: types.maybe(types.string),
   })
-  .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .actions((self) => ({
+    setFirstName(value: string) {
+      self.firstName = value
+    },
+    setLastName(value: string) {
+      self.lastName = value
+    },
+    setEmail(value: string) {
+      self.email = value
+  },
+    setDob(value: Date) {
+      self.dob = value
+  },
+    setSex(value: string) {
+      self.sex = value
+  },
+    })) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({
     addPatient: async () => {
       console.log("add stuff")

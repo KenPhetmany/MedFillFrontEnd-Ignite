@@ -23,3 +23,4 @@ export  const FORMBUTTONS: ViewStyle = {
         alignItems:'center',
         justifyContent: 'space-around'
       }
+

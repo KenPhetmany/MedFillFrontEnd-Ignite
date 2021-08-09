@@ -1,6 +1,7 @@
 /* eslint-disable no-cond-assign */
 import { flow, Instance, SnapshotOut, types } from "mobx-state-tree"
 import Firebase from './../../config/Firebase';
+import { save, load } from "../../utils/storage";
 
 
 /**
@@ -31,6 +32,9 @@ export const UserModel = types
        /* Firebase.auth().signInWithEmailAndPassword(self.email, self.password)
         .then((userCredential) => {
           // Signed in 
+          // save(self.email, self.password)
+          // self.email = ""
+          // self.password = ""
         })
         .catch((error) => {
           self.status = error.message;

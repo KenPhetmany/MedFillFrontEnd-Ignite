@@ -5,6 +5,7 @@ import { PharmacyModel } from './../pharmacy/pharmacy';
 import { PatientModel } from './../patient/patient';
 import { PharmacyStoreModel } from "..";
 import { PatientStoreModel } from './../patient-store/patient-store';
+import { OrderModel } from './../order/order';
 
 /**
  * A RootStore model.
@@ -17,6 +18,7 @@ export const RootStoreModel = types.model("RootStore").props({
   pharmacyStore: types.optional(PharmacyStoreModel, {} as any ),
   patient: types.optional(PatientModel, {} as any ),
   patientStore: types.optional(PatientStoreModel, {} as any ),
+  order: types.optional(OrderModel, {} as any ),
 })
 
 /**
