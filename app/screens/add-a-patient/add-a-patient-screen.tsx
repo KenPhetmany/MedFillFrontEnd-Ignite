@@ -29,6 +29,7 @@ export const AddAPatientScreen = observer(function AddAPatientScreen() {
       <Button
       text="Add Patient"
       onPress={() => patientStore.addPatient("hwllo", patient.email, patient.lastName, patient.email, patient.dob, patient.sex)}
+
       />
       <Button
       text="Go back"
