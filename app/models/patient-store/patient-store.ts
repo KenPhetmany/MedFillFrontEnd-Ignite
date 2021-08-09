@@ -7,11 +7,10 @@ import { PatientModel } from './../patient/patient';
 export const PatientStoreModel = types
   .model("PatientStore")
   .props({
-    patients: types.map(PatientModel),
+    patients: types.optional(types.map(PatientModel), {})
   })
-  .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({
-    addPatient(id, fName, lName, email, dob, sex ) {
+    addPatient(id: string, fName: string, lName: string, email: string, dob: Date, sex: string ) {
       self.patients.set(id, PatientModel.create({ firstName: fName, lastName: lName, email: email, dob: dob, sex: sex }))
   }
   })) // eslint-disable-line @typescript-eslint/no-unused-vars

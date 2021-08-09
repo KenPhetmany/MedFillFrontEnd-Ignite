@@ -11,7 +11,7 @@ export const PharmacyStoreModel = types
   })
   .actions((self) => ({
     addPharmacy: async () =>{
-      console.log(self.pharmacies)
+      console.log("Hello")
     },
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
 
