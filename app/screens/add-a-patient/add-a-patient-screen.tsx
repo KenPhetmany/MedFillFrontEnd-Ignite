@@ -8,7 +8,9 @@ import { ROOT, CARD, FORM } from './../../theme/coreStyles';
 
 export const AddAPatientScreen = observer(function AddAPatientScreen() {
   // Pull in one of our MST stores
-   const { patient  } = useStores()
+   const { patient, patientStore  } = useStores()
+   let id = 1;
+   const randomId = () => ++id;
 
   // Pull in navigation via hook
   const navigation = useNavigation()
@@ -26,7 +28,7 @@ export const AddAPatientScreen = observer(function AddAPatientScreen() {
       </View>
       <Button
       text="Add Patient"
-      onPress={() => patient.addPatient()}
+      onPress={() => patientStore.addPatient(randomId(), patient.email, patient.lastName, patient.email, patient.dob, patient.sex)}
       />
       <Button
       text="Go back"

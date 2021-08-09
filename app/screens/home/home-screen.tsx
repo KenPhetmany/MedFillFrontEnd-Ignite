@@ -1,22 +1,38 @@
 import React from "react"
 import { observer } from "mobx-react-lite"
-import { View } from "react-native"
+import { View, VirtualizedList } from "react-native"
 import { Screen, Text, Button } from "../../components"
 import { useNavigation } from "@react-navigation/native"
  import { useStores } from "../../models"
-import { color } from "../../theme"
 import {ROOT, CARD} from "../../theme/coreStyles"
+import { Patient } from "../../models/patient/patient"
+import { decodeHTMLEntities } from "../../utils/html-decode"
+
 
 export const HomeScreen = observer(function HomeScreen() {
-  const {user, pharmacy, patientStore, order} = useStores()
-
+  const {user, pharmacy, patientStore, order,} = useStores()
   const navigation = useNavigation()
+
+  const renderPatient = ({ item }) => {
+    const patient: Patient = item
+    return (
+      <View>
+        <Text  text={decodeHTMLEntities(patient.firstName)} />
+      </View>
+    )
+  }
 
   return (
     <Screen style={ROOT} preset="scroll">
       <Text preset="header" text="Homescreen" />
       <View style={CARD}>
         <Text preset="bold" text="TODO: Add adding a patient feature and then listing them here"/>
+        <View >
+          <VirtualizedList  
+          data={patientStore.patients}
+          renderItem={renderPatient}
+          />
+        </View>
         <Button text="Add a patient" onPress={() => navigation.navigate("addAPatient")} />
       </View>
       <View style={CARD}>

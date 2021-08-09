@@ -7,10 +7,14 @@ import { PatientModel } from './../patient/patient';
 export const PatientStoreModel = types
   .model("PatientStore")
   .props({
-    patient: types.optional(types.array(PatientModel), []),
+    patients: types.map(PatientModel),
   })
   .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
-  .actions((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .actions((self) => ({
+    addPatient(id, fName, lName, email, dob, sex ) {
+      self.patients.set(id, PatientModel.create({ firstName: fName, lastName: lName, email: email, dob: dob, sex: sex }))
+  }
+  })) // eslint-disable-line @typescript-eslint/no-unused-vars
 
 type PatientStoreType = Instance<typeof PatientStoreModel>
 export interface PatientStore extends PatientStoreType {}

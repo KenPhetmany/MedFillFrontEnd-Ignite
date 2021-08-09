@@ -11,6 +11,7 @@ export const PatientModel = types
     email: types.maybe(types.string),
     dob: types.maybe(types.Date),
     sex: types.maybe(types.string),
+
   })
   .actions((self) => ({
     setFirstName(value: string) {
