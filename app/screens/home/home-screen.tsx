@@ -38,16 +38,10 @@ export const HomeScreen = observer(function HomeScreen() {
       <View style={CARD}>
         <Text preset="bold" text="TODO: Add a single ordering screen for these features (they just change the state of order.type)"/>
         <Button text="Click and collect" 
-        onPress={() => {
-        navigation.navigate("order")}}
         />
         <Button text="Delivery"
-        onPress={() => {
-        navigation.navigate("order")}}
         />
-        <Button text="Scan in-store"
-        onPress={() => {
-        navigation.navigate("order")}}/>
+        <Button text="Scan in-store" />
       </View>
       <Button
       text="Logout"
