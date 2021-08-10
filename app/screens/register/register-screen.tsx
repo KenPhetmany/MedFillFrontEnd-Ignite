@@ -25,9 +25,9 @@ export const RegisterScreen = observer(function RegisterScreen() {
   return (
     <Screen style={ROOT} preset="scroll">
       <Text preset="header" text="Register" />
-      <TextField label="Please provide an email!"onChangeText={e => userStore.setEmail(e)} />
-      <TextField label="Please enter a valid password" onChangeText={e => userStore.setPassword(e)} />
-      <TextField label="Please confirm password" onChangeText={e => userStore.setPassword(e)} />
+      <TextField label="Please provide an email!"onChangeText={e => user.setEmail(e)} />
+      <TextField label="Please enter a valid password" onChangeText={e => user.setPassword(e)} />
+      <TextField label="Please confirm password" onChangeText={e => user.setPassword(e)} />
     
       <Button
       text="Go back to Login"

@@ -41,7 +41,7 @@ export type RootParamList = {
 const Stack = createStackNavigator<RootParamList>()
 
 const RootStack = observer(() => {
-  const {userStore } = useStores();
+  const {user } = useStores();
 
   return (
     <Stack.Navigator
@@ -50,7 +50,7 @@ const RootStack = observer(() => {
         headerShown: false,
       }}
     >
-      {userStore.isAuthenticated ? (
+      {user.isAuthenticated ? (
         <Stack.Screen
         name="mainStack"
         component={MainNavigator}
