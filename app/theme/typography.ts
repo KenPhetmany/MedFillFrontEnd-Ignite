@@ -17,7 +17,7 @@ export const typography = {
   /**
    * The primary font.  Used in most places.
    */
-  primary: Platform.select({ ios: "Helvetica", android: "monospace" }),
+  primary: Platform.select({ ios: "Helvetica", android: "Souliyo Unicode" }),
 
   /**
    * An alternate font used for perhaps titles and stuff.

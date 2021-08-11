@@ -46,7 +46,7 @@ const RootStack = observer(() => {
   return (
     <Stack.Navigator
       screenOptions={{
-        cardStyle: { backgroundColor: color.palette.deepPurple },
+        cardStyle: { backgroundColor: color.palette.pink },
         headerShown: false,
       }}
     >

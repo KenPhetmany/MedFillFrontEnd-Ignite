@@ -16,7 +16,7 @@ const inputStyleArray: TextStyle[] = [
   {
     backgroundColor: "rebeccapurple",
     color: "white",
-    padding: 40,
+    padding: 2,
   },
   {
     borderWidth: 10,

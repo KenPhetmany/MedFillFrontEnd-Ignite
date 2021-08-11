@@ -10,14 +10,7 @@ import {
   Screen,
   TextField,
 } from "../../components"
-import { ROOT, CARD, FORM } from './../../theme/coreStyles';
-
-const FORMBUTTONS: ViewStyle = {
-  flex: 2,
-  flexDirection:'row',
-  alignItems:'center',
-  justifyContent: 'space-around'
-}
+import { CARD, FORM, FORMBUTTONS } from './../../theme/coreStyles';
 
 
 export const LoginScreen = observer(function LoginScreen() {
@@ -30,11 +23,11 @@ export const LoginScreen = observer(function LoginScreen() {
   const navigation = useNavigation()
 
   return (
-    <Screen style={ROOT} preset="scroll">
+    <Screen  preset="scroll">
       <Header headerText="Welcome to Medfill"/>
       <View style={CARD}>
         <View style={FORM}>
-      <TextField label="Please enter your email!"  onChangeText={e => user.setEmail(e)} />
+      <TextField  label="Please enter your email!"  onChangeText={e => user.setEmail(e)} />
       <TextField label="Please enter your password!" onChangeText={e => user.setPassword(e)} />
         </View>
         <View style={FORMBUTTONS}>
