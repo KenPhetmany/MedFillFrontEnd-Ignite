@@ -6,12 +6,9 @@ import { Instance, SnapshotOut, types } from "mobx-state-tree"
 export const PatientModel = types
   .model("Patient")
   .props({
+    id: types.maybe(types.string),
     firstName: types.maybe(types.string),
     lastName: types.maybe(types.string),
-    email: types.maybe(types.string),
-    dob: types.maybe(types.Date),
-    sex: types.maybe(types.string),
-
   })
   .actions((self) => ({
     setFirstName(value: string) {
@@ -22,18 +19,15 @@ export const PatientModel = types
     },
     setEmail(value: string) {
       self.email = value
-  },
+    },
     setDob(value: Date) {
       self.dob = value
-  },
+    },
     setSex(value: string) {
       self.sex = value
-  },
-    })) // eslint-disable-line @typescript-eslint/no-unused-vars
-  .actions((self) => ({
-    addPatient: async () => {
-      console.log("add stuff")
-    }  })) // eslint-disable-line @typescript-eslint/no-unused-vars
+    },
+  })) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .actions((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
 
 type PatientType = Instance<typeof PatientModel>
 export interface Patient extends PatientType {}

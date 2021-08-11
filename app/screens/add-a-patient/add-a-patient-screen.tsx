@@ -4,18 +4,17 @@ import { Screen, Header, TextField, Button } from "../../components"
 import { View } from "react-native"
 import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../../models"
-import { ROOT, CARD, FORM } from "./../../theme/coreStyles"
+import { CARD, FORM } from "./../../theme/coreStyles"
+import { getSnapshot } from "mobx-state-tree"
 
 export const AddAPatientScreen = observer(function AddAPatientScreen() {
   // Pull in one of our MST stores
   const { patient, patientStore } = useStores()
-  let id = 1
-  const randomId = () => ++id
 
   // Pull in navigation via hook
   const navigation = useNavigation()
   return (
-    <Screen style={ROOT} preset="scroll">
+    <Screen preset="scroll">
       <Header headerText="Fill in form to add patient" />
       <View style={CARD}>
         <View style={FORM}>
@@ -27,25 +26,26 @@ export const AddAPatientScreen = observer(function AddAPatientScreen() {
             label="Please enter your last name !"
             onChangeText={(e) => patient.setLastName(e)}
           />
-          <TextField
-            label="Please enter your email !"
-            onChangeText={(e) => patient.setLastName(e)}
-          />
-          <TextField label="Please enter your date of birth !" />
-          <TextField label="Please enter your sex !" onChangeText={(e) => patient.setSex(e)} />
         </View>
         <Button
           text="Add Patient"
-          onPress={() =>
+          onPress={() => {
             patientStore.addPatient(
-              "hwllo",
-              patient.email,
+              Math.random().toString(12).substring(0),
+              patient.firstName,
               patient.lastName,
-              patient.email,
-              patient.dob,
-              patient.sex,
             )
-          }
+          }}
+        />
+        <Button
+          text="check patients via console log"
+          onPress={() => console.log(patientStore.getPatient())}
+        />
+        <Button
+          text="clear all patients"
+          onPress={() => {
+            patientStore.clearPatients()
+          }}
         />
       </View>
       <Button text="Go back" onPress={() => navigation.navigate("home")} />
