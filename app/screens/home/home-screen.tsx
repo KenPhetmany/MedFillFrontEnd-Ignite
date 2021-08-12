@@ -9,9 +9,9 @@ import { Patient } from "../../models/patient/patient"
 import { values } from "mobx"
 
 export const HomeScreen = observer(function HomeScreen() {
-  const { user, patient, patientStore } = useStores()
+  const { user, patient, patientStore, pharmacy } = useStores()
   const navigation = useNavigation()
-
+  const savedPharmacyTitle = `Your current pharmacy is: ${pharmacy.savedPharmacy}`
   const renderPatient = ({ item }) => {
     const patient: Patient = item
     return (
@@ -39,7 +39,7 @@ export const HomeScreen = observer(function HomeScreen() {
         <Button text="Add a patient" onPress={() => navigation.navigate("addAPatient")} />
       </View>
       <View style={CARD}>
-        <Text preset="bold" text="TODO: Add geocode feature to find chemist" />
+        <Text preset="bold" text={savedPharmacyTitle} />
         <Button text="Find your chemist" onPress={() => navigation.navigate("findAChemist")} />
       </View>
       <View style={CARD}>

@@ -14,6 +14,9 @@ export const PharmacyModel = types
     setPharmacy: (value: string) => {
       self.savedPharmacy = value
     },
+    setAddress(value: string) {
+      self.address = value
+    },
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
 
 type PharmacyType = Instance<typeof PharmacyModel>
