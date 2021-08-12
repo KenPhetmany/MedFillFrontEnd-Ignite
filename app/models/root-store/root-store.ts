@@ -1,8 +1,10 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import { CharacterStoreModel } from "../character-store/character-store"
 import { UserModel } from "../user/user"
-import { PatientModel } from './../patient/patient';
-import {PatientStoreModel} from './../patient-store/patient-store'
+import { PatientModel } from "./../patient/patient"
+import { PatientStoreModel } from "./../patient-store/patient-store"
+import { MapsModel } from "./../maps/maps"
+import { PharmacyModel } from "../pharmacy/pharmacy"
 
 /**
  * A RootStore model.
@@ -13,6 +15,8 @@ export const RootStoreModel = types.model("RootStore").props({
   user: types.optional(UserModel, {} as any ),
   patient: types.optional(PatientModel, {} as any ),
   patientStore: types.optional(PatientStoreModel, {} as any ),
+  maps: types.optional(MapsModel, {} as any),
+  pharmacy: types.optional(PharmacyModel, {} as any)
 })
 
 /**
