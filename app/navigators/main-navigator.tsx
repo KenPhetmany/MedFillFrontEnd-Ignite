@@ -6,19 +6,9 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import {
-  HomeScreen,
-  SettingsScreen,
-  ProfileScreen,
-  ShoppingCartScreen,
-  PrescribedOrdersScreen,
-  ContactUsScreen,
-  AddAPatientScreen,
-} from "../screens"
+import { HomeScreen, ProfileScreen } from "../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { NavigationContainer } from "@react-navigation/native"
-import { FaqScreen } from "./../screens/faq/faq-screen"
-import { FindAChemistScreen } from "./../screens/find-a-chemist/find-a-chemist-screen"
+import { PrescriptionsScreen } from "./../screens/prescriptions/prescriptions-screen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -36,29 +26,23 @@ export type PrimaryParamList = {
   welcome: undefined
   home: undefined
   profile: undefined
-  shoppingCart: undefined
   settings: undefined
-  faq: undefined
-  contactUs: undefined
-  presciptionOrders: undefined
   findAChemist: undefined
-  addAPatient: undefined
+  prescriptions: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Tab = createBottomTabNavigator()
 const ProfileStack = createStackNavigator()
 const HomeStack = createStackNavigator()
+const PrescriptionsStack = createStackNavigator()
+
+// TODO: Add the following screens: User details, Addresses, List of pharmarcies, list of patients, Medicare Card
 
 const ProfileStackScreen = () => {
   return (
     <ProfileStack.Navigator>
       <ProfileStack.Screen name="profile" component={ProfileScreen} />
-      <ProfileStack.Screen name="findAChemist" component={FindAChemistScreen} />
-      <ProfileStack.Screen name="prescriptionOrders" component={PrescribedOrdersScreen} />
-      <ProfileStack.Screen name="settings" component={SettingsScreen} />
-      <ProfileStack.Screen name="faq" component={FaqScreen} />
-      <ProfileStack.Screen name="contactUs" component={ContactUsScreen} />
     </ProfileStack.Navigator>
   )
 }
@@ -71,12 +55,20 @@ const HomeStackScreen = () => {
   )
 }
 
+const PrescriptionsStackScreen = () => {
+  return (
+    <PrescriptionsStack.Navigator>
+      <PrescriptionsStack.Screen name="prescriptions" component={PrescriptionsScreen} />
+    </PrescriptionsStack.Navigator>
+  )
+}
+
 export const MainNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="home" component={HomeStackScreen} />
-      <Tab.Screen name="findAChemist" component={FindAChemistScreen} />
-      <Tab.Screen name="addAPatient" component={AddAPatientScreen} />
+      <Tab.Screen name="profile" component={ProfileStackScreen} />
+      <Tab.Screen name="prescriptions" component={PrescriptionsStackScreen} />
     </Tab.Navigator>
   )
 }
