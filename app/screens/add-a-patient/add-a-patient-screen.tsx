@@ -39,7 +39,7 @@ export const AddAPatientScreen = observer(function AddAPatientScreen() {
         />
         <Button
           text="check patients via console log"
-          onPress={() => console.log(patientStore.getPatient())}
+          onPress={() => console.log(patientStore.patients)}
         />
         <Button
           text="clear all patients"

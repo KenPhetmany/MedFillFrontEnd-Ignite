@@ -6,7 +6,6 @@ import { Instance, SnapshotOut, types } from "mobx-state-tree"
 export const PatientModel = types
   .model("Patient")
   .props({
-    id: types.maybe(types.string),
     firstName: types.maybe(types.string),
     lastName: types.maybe(types.string),
   })
@@ -16,15 +15,6 @@ export const PatientModel = types
     },
     setLastName(value: string) {
       self.lastName = value
-    },
-    setEmail(value: string) {
-      self.email = value
-    },
-    setDob(value: Date) {
-      self.dob = value
-    },
-    setSex(value: string) {
-      self.sex = value
     },
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars

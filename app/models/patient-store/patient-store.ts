@@ -15,7 +15,6 @@ export const PatientStoreModel = types
       self.patients.set(
         id,
         PatientModel.create({
-          id: id,
           firstName: fName,
           lastName: lName,
         }),

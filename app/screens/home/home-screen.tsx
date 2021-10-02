@@ -12,11 +12,16 @@ export const HomeScreen = observer(function HomeScreen() {
   const { user, patient, patientStore } = useStores()
   const navigation = useNavigation()
 
+  const Item = ({ title }) => (
+    <View>
+      <Text>{title}</Text>
+    </View>
+  )
+
   const renderPatient = ({ item }) => {
-    const patient: Patient = item
     return (
-      <View key={item.id}>
-        <Button key={patient.id} text="IM testingf" />
+      <View>
+        <Item title={item.firstName} />
       </View>
     )
   }
@@ -26,17 +31,14 @@ export const HomeScreen = observer(function HomeScreen() {
       <View style={CARD}>
         <Text preset="bold" text="TODO: Add adding a patient feature and then listing them here" />
         <View>
-          <VirtualizedList
-            keyExtractor={(item) => {
-              return item.id
-            }}
+          <FlatList
+            keyExtractor={(item) => item.id}
             data={patientStore.patients}
             renderItem={renderPatient}
-            getItemCount={patientStore.getPatientCount}
-            getItem={patientStore.getPatient}
           />
         </View>
-        <Button text="Add a patient" onPress={() => navigation.navigate("addAPatient")} />
+        <Button text="Add a patient" onPress={() => navigation.navigate("addPatient")} />
+        <Button text="Check for patients" onPress={() => console.log(patientStore.patients)} />
       </View>
       <View style={CARD}>
         <Text preset="bold" text="TODO: Add geocode feature to find chemist" />

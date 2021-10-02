@@ -10,16 +10,16 @@ import { createStackNavigator } from "@react-navigation/stack"
 import { MainNavigator } from "./main-navigator"
 import { color } from "../theme"
 import { observer } from "mobx-react-lite"
-import firebase from "firebase/app";
-import "firebase/auth";
+import firebase from "firebase/app"
+import "firebase/auth"
 
 import { useStores } from "../models"
 import { WelcomeScreen, LoginScreen, RegisterScreen, ResetPasswordScreen } from "../screens"
-
+import { Header } from "./../components/header/header"
 
 /**
- * 
- *       
+ *
+ *
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
  *
@@ -41,7 +41,7 @@ export type RootParamList = {
 const Stack = createStackNavigator<RootParamList>()
 
 const RootStack = observer(() => {
-  const {user } = useStores();
+  const { user } = useStores()
 
   return (
     <Stack.Navigator
@@ -52,21 +52,19 @@ const RootStack = observer(() => {
     >
       {user.isAuthenticated ? (
         <Stack.Screen
-        name="mainStack"
-        component={MainNavigator}
-        options={{
-          headerShown: false,
-        }}
-      />
-      ) :(
+          name="mainStack"
+          component={MainNavigator}
+          options={{
+            headerShown: false,
+          }}
+        />
+      ) : (
         <>
-        <Stack.Screen name="login" component={LoginScreen} />
-        <Stack.Screen name="register" component={RegisterScreen} />
-        <Stack.Screen name="resetPassword" component={ResetPasswordScreen} />
+          <Stack.Screen name="login" component={LoginScreen} />
+          <Stack.Screen name="register" component={RegisterScreen} />
+          <Stack.Screen name="resetPassword" component={ResetPasswordScreen} />
         </>
-      )
-    }
-
+      )}
     </Stack.Navigator>
   )
 })

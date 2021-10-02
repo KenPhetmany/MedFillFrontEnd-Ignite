@@ -10,7 +10,16 @@ export const PrescriptionStoreModel = types
     prescriptions: types.optional(types.map(PrescriptionModel), {}),
   })
   .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
-  .actions((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .actions((self) => ({
+    testAdd(id: string, name: string) {
+      self.prescriptions.set(
+        id,
+        PrescriptionModel.create({
+          name: name,
+        }),
+      )
+    },
+  })) // eslint-disable-line @typescript-eslint/no-unused-vars
 
 type PrescriptionStoreType = Instance<typeof PrescriptionStoreModel>
 export interface PrescriptionStore extends PrescriptionStoreType {}

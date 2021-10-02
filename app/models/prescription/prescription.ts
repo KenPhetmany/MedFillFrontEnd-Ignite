@@ -6,9 +6,9 @@ import { Instance, SnapshotOut, types } from "mobx-state-tree"
 export const PrescriptionModel = types
   .model("Prescription")
   .props({
-    id: types.maybe(types.string),
+    // id: types.maybe(types.string),
     name: types.maybe(types.string),
-    status: types.maybe(types.string),
+    //  status: types.maybe(types.string),
   })
   .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars

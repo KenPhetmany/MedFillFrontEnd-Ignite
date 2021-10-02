@@ -6,7 +6,7 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { HomeScreen, ProfileScreen } from "../screens"
+import { HomeScreen, ProfileScreen, AddAPatientScreen } from "../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { PrescriptionsScreen } from "./../screens/prescriptions/prescriptions-screen"
 
@@ -29,6 +29,7 @@ export type PrimaryParamList = {
   settings: undefined
   findAChemist: undefined
   prescriptions: undefined
+  addPatient: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -51,6 +52,7 @@ const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="addPatient" component={AddAPatientScreen} />
     </HomeStack.Navigator>
   )
 }
@@ -69,6 +71,7 @@ export const MainNavigator = () => {
       <Tab.Screen name="home" component={HomeStackScreen} />
       <Tab.Screen name="profile" component={ProfileStackScreen} />
       <Tab.Screen name="prescriptions" component={PrescriptionsStackScreen} />
+      <Tab.Screen name="addPatient" component={AddAPatientScreen} />
     </Tab.Navigator>
   )
 }
