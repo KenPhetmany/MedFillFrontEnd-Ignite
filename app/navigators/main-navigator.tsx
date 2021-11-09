@@ -10,14 +10,11 @@ import {
   HomeScreen,
   SettingsScreen,
   ProfileScreen,
-  ShoppingCartScreen,
-  PrescribedOrdersScreen,
-  ContactUsScreen,
-  AddAPatientScreen,
+  SettingsAccountDetailsScreen,
+  SettingsAccountDetailsUserScreen,
+  SettingsAccountDetailsPatientsScreen,
 } from "../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { NavigationContainer } from "@react-navigation/native"
-import { FaqScreen } from "./../screens/faq/faq-screen"
 import { FindAChemistScreen } from "./../screens/find-a-chemist/find-a-chemist-screen"
 
 /**
@@ -32,42 +29,48 @@ import { FindAChemistScreen } from "./../screens/find-a-chemist/find-a-chemist-s
  *   https://reactnavigation.org/docs/params/
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
-export type PrimaryParamList = {
-  welcome: undefined
-  home: undefined
-  profile: undefined
-  shoppingCart: undefined
-  settings: undefined
-  faq: undefined
-  contactUs: undefined
-  presciptionOrders: undefined
-  findAChemist: undefined
-  addAPatient: undefined
-}
+export type PrimaryParamList = {}
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Tab = createBottomTabNavigator()
 const ProfileStack = createStackNavigator()
 const HomeStack = createStackNavigator()
-
-const ProfileStackScreen = () => {
-  return (
-    <ProfileStack.Navigator>
-      <ProfileStack.Screen name="profile" component={ProfileScreen} />
-      <ProfileStack.Screen name="findAChemist" component={FindAChemistScreen} />
-      <ProfileStack.Screen name="prescriptionOrders" component={PrescribedOrdersScreen} />
-      <ProfileStack.Screen name="settings" component={SettingsScreen} />
-      <ProfileStack.Screen name="faq" component={FaqScreen} />
-      <ProfileStack.Screen name="contactUs" component={ContactUsScreen} />
-    </ProfileStack.Navigator>
-  )
-}
+const PrescriptionStack = createStackNavigator()
+const OrderStack = createStackNavigator()
 
 const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="findAChemist" component={FindAChemistScreen} />
     </HomeStack.Navigator>
+  )
+}
+
+const ProfileStackScreen = () => {
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen name="profile" component={ProfileScreen} />
+      <ProfileStack.Screen name="settings" component={SettingsScreen} />
+      <ProfileStack.Screen name="user" component={SettingsAccountDetailsUserScreen} />
+      <ProfileStack.Screen name="patient" component={SettingsAccountDetailsPatientsScreen} />
+    </ProfileStack.Navigator>
+  )
+}
+
+const PrescriptionStackScreen = () => {
+  return (
+    <PrescriptionStack.Navigator>
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+    </PrescriptionStack.Navigator>
+  )
+}
+
+const OrderStackScreen = () => {
+  return (
+    <OrderStack.Navigator>
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+    </OrderStack.Navigator>
   )
 }
 
@@ -75,8 +78,8 @@ export const MainNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="home" component={HomeStackScreen} />
-      <Tab.Screen name="findAChemist" component={FindAChemistScreen} />
-      <Tab.Screen name="addAPatient" component={AddAPatientScreen} />
+      <Tab.Screen name="prescription" component={PrescriptionStackScreen} />
+      <Tab.Screen name="profile" component={ProfileStackScreen} />
     </Tab.Navigator>
   )
 }
