@@ -7,11 +7,12 @@ export const OrderModel = types
   .model("Order")
   .props({
     orderType: types.maybe(types.string),
+    userOrder: types.maybe(types.string),
   })
   .actions((self) => ({
     setOrderType(value: string) {
       self.orderType = value
-    }
+    },
   })) // eslint-disable-line @typescript-eslint/no-unused-vars
 
 type OrderType = Instance<typeof OrderModel>

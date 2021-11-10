@@ -13,6 +13,7 @@ import {
   SettingsAccountDetailsScreen,
   SettingsAccountDetailsUserScreen,
   SettingsAccountDetailsPatientsScreen,
+  ShoppingCartScreen,
 } from "../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { FindAChemistScreen } from "./../screens/find-a-chemist/find-a-chemist-screen"
@@ -29,7 +30,9 @@ import { FindAChemistScreen } from "./../screens/find-a-chemist/find-a-chemist-s
  *   https://reactnavigation.org/docs/params/
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
-export type PrimaryParamList = {}
+export type PrimaryParamList = {
+  profile: undefined
+}
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Tab = createBottomTabNavigator()
@@ -43,6 +46,7 @@ const HomeStackScreen = () => {
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={HomeScreen} />
       <HomeStack.Screen name="findAChemist" component={FindAChemistScreen} />
+      <HomeStack.Screen name="shopping" component={ShoppingCartScreen} />
     </HomeStack.Navigator>
   )
 }

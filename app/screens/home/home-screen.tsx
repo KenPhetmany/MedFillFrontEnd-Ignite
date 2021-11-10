@@ -9,7 +9,7 @@ import { Patient } from "../../models/patient/patient"
 import { values } from "mobx"
 
 export const HomeScreen = observer(function HomeScreen() {
-  const { user, patient, patientStore } = useStores()
+  const { user, patientStore, order } = useStores()
   const navigation = useNavigation()
 
   const renderPatient = ({ item }) => {
@@ -19,6 +19,22 @@ export const HomeScreen = observer(function HomeScreen() {
         <Button key={patient.id} text="IM testingf" />
       </View>
     )
+  }
+
+  const orderClick = () => {
+    order.setOrderType("Click and Collect")
+    console.log(order.orderType)
+    navigation.navigate("shopping")
+  }
+  const orderDelivery = () => {
+    order.setOrderType("Delivery")
+    console.log(order.orderType)
+    navigation.navigate("shopping")
+  }
+  const orderInstore = () => {
+    order.setOrderType("Instore")
+    console.log(order.orderType)
+    navigation.navigate("shopping")
   }
 
   return (
@@ -47,9 +63,9 @@ export const HomeScreen = observer(function HomeScreen() {
           preset="bold"
           text="TODO: Add a single ordering screen for these features (they just change the state of order.type)"
         />
-        <Button text="Click and collect" />
-        <Button text="Delivery" />
-        <Button text="Scan in-store" />
+        <Button text="Click and collect" onPress={(e) => orderClick()} />
+        <Button text="Delivery" onPress={(e) => orderDelivery()} />
+        <Button text="Scan in-store" onPress={(e) => orderInstore()} />
       </View>
       <Button text="Logout" onPress={() => user.logout()} />
     </Screen>
