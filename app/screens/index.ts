@@ -15,3 +15,6 @@ export * from "./settings-account-details-patients/settings-account-details-pati
 export * from "./prescriptions/prescriptions-screen"
 export * from "./find-a-chemist/find-a-chemist-screen"
 export * from "./add-a-patient/add-a-patient-screen"
+export * from "./order-details/order-details-screen"
+export * from "./order-booking/order-booking-screen"
+export * from "./order-confirm/order-confirm-screen"

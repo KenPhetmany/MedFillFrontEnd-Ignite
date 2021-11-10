@@ -24,17 +24,17 @@ export const HomeScreen = observer(function HomeScreen() {
   const orderClick = () => {
     order.setOrderType("Click and Collect")
     console.log(order.orderType)
-    navigation.navigate("shopping")
+    navigation.navigate("shoppingCart")
   }
   const orderDelivery = () => {
     order.setOrderType("Delivery")
     console.log(order.orderType)
-    navigation.navigate("shopping")
+    navigation.navigate("shoppingCart")
   }
   const orderInstore = () => {
     order.setOrderType("Instore")
     console.log(order.orderType)
-    navigation.navigate("shopping")
+    navigation.navigate("shoppingCart")
   }
 
   return (

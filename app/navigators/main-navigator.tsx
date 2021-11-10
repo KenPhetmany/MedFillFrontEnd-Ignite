@@ -10,13 +10,16 @@ import {
   HomeScreen,
   SettingsScreen,
   ProfileScreen,
+  FindAChemistScreen,
   SettingsAccountDetailsScreen,
   SettingsAccountDetailsUserScreen,
   SettingsAccountDetailsPatientsScreen,
   ShoppingCartScreen,
+  OrderDetailsScreen,
+  OrderBookingScreen,
+  OrderConfirmScreen,
 } from "../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { FindAChemistScreen } from "./../screens/find-a-chemist/find-a-chemist-screen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -46,7 +49,10 @@ const HomeStackScreen = () => {
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={HomeScreen} />
       <HomeStack.Screen name="findAChemist" component={FindAChemistScreen} />
-      <HomeStack.Screen name="shopping" component={ShoppingCartScreen} />
+      <HomeStack.Screen name="shoppingCart" component={ShoppingCartScreen} />
+      <HomeStack.Screen name="orderDetails" component={OrderDetailsScreen} />
+      <HomeStack.Screen name="orderBooking" component={OrderBookingScreen} />
+      <HomeStack.Screen name="orderConfirm" component={OrderConfirmScreen} />
     </HomeStack.Navigator>
   )
 }
@@ -67,14 +73,6 @@ const PrescriptionStackScreen = () => {
     <PrescriptionStack.Navigator>
       <HomeStack.Screen name="Home" component={HomeScreen} />
     </PrescriptionStack.Navigator>
-  )
-}
-
-const OrderStackScreen = () => {
-  return (
-    <OrderStack.Navigator>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
-    </OrderStack.Navigator>
   )
 }
 
