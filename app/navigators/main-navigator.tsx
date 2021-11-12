@@ -11,7 +11,6 @@ import {
   SettingsScreen,
   ProfileScreen,
   FindAChemistScreen,
-  SettingsAccountDetailsScreen,
   SettingsAccountDetailsUserScreen,
   SettingsAccountDetailsPatientsScreen,
   ShoppingCartScreen,
@@ -47,11 +46,11 @@ const OrderStack = createStackNavigator()
 const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="home" component={HomeScreen} />
       <HomeStack.Screen name="findAChemist" component={FindAChemistScreen} />
       <HomeStack.Screen name="shoppingCart" component={ShoppingCartScreen} />
-      <HomeStack.Screen name="orderDetails" component={OrderDetailsScreen} />
       <HomeStack.Screen name="orderBooking" component={OrderBookingScreen} />
+      <HomeStack.Screen name="orderDetails" component={OrderDetailsScreen} />
       <HomeStack.Screen name="orderConfirm" component={OrderConfirmScreen} />
     </HomeStack.Navigator>
   )

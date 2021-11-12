@@ -1,25 +1,37 @@
 import React from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
-import { Screen, Text } from "../../components"
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../../models"
+import { FlatList, View } from "react-native"
+import { Screen, Text, Button, TextField, Header } from "../../components"
+import { useNavigation } from "@react-navigation/native"
+import { useStores } from "../../models"
 import { color } from "../../theme"
-
-const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
-  flex: 1,
-}
+import { CARD, FORM } from "./../../theme/coreStyles"
 
 export const OrderDetailsScreen = observer(function OrderDetailsScreen() {
-  // Pull in one of our MST stores
-  // const { someStore, anotherStore } = useStores()
+  const { order, user } = useStores()
 
-  // Pull in navigation via hook
-  // const navigation = useNavigation()
+  const navigation = useNavigation()
   return (
-    <Screen style={ROOT} preset="scroll">
-      <Text preset="header" text="" />
+    <Screen preset="scroll">
+      <View style={CARD}>
+        <View style={FORM}>
+          <Text text="Your shopping cart" />
+          <FlatList
+            data={[{ key: "Panadol" }, { key: "Fisiocrem" }, { key: "Valdaxon" }]}
+            renderItem={({ item }) => <Text>{item.key}</Text>}
+          />
+          <TextField
+            label="Your Full Name:"
+            value={user.firstName + " " + user.lastName}
+            editable={false}
+          />
+          <TextField label="Your Mobile Number:" value={user.phoneNumber} editable={false} />
+          <TextField label="Your Your Email address:" value={user.email} editable={false} />
+          <TextField label="Assigned Pharmacy:" value={order.orderPharmacy} editable={false} />
+          <TextField label="Collection Date" value={order.orderDate} editable={false} />
+          <Button text="Confirm Order!" onPress={() => navigation.navigate("home")} />
+        </View>
+      </View>
     </Screen>
   )
 })

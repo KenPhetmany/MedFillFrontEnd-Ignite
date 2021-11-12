@@ -1,25 +1,30 @@
 import React from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
-import { Screen, Text } from "../../components"
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../../models"
-import { color } from "../../theme"
-
-const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
-  flex: 1,
-}
+import { TextStyle, View, ViewStyle } from "react-native"
+import { Button, Header, Screen, Text } from "../../components"
+import { useNavigation } from "@react-navigation/native"
+import { useStores } from "../../models"
+import { CARD, color, FORM } from "../../theme"
+import { FlatList } from "react-native-gesture-handler"
 
 export const ShoppingCartScreen = observer(function ShoppingCartScreen() {
   // Pull in one of our MST stores
-  // const { someStore, anotherStore } = useStores()
+  const { order } = useStores()
 
   // Pull in navigation via hook
-  // const navigation = useNavigation()
+  const navigation = useNavigation()
   return (
-    <Screen style={ROOT} preset="scroll">
-      <Text preset="header" text="Shopping Cart" />
+    <Screen preset="scroll">
+      <View style={CARD}>
+        <View style={FORM}>
+          <Text>This is your Order:</Text>
+          <FlatList
+            data={[{ key: "Panadol" }, { key: "Fisiocrem" }, { key: "Valdaxon" }]}
+            renderItem={({ item }) => <Text>{item.key}</Text>}
+          />
+        </View>
+      </View>
+      <Button text="Proceed to Booking" onPress={() => navigation.navigate("orderBooking")} />
     </Screen>
   )
 })

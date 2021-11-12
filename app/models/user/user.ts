@@ -1,8 +1,7 @@
 /* eslint-disable no-cond-assign */
 import { flow, Instance, SnapshotOut, types } from "mobx-state-tree"
-import Firebase from './../../config/Firebase';
-import { save, load } from "../../utils/storage";
-
+import Firebase from "./../../config/Firebase"
+import { save, load } from "../../utils/storage"
 
 /**
  * Model description here for TypeScript hints.
@@ -13,23 +12,43 @@ export const UserModel = types
     email: types.maybe(types.string),
     password: types.maybe(types.string),
     status: types.maybe(types.string),
+    assignedPharmacy: types.maybe(types.string),
+    assignedHomeAddress: types.maybe(types.string),
+    firstName: types.maybe(types.string),
+    lastName: types.maybe(types.string),
+    phoneNumber: types.maybe(types.string),
     isAuthenticated: types.optional(types.boolean, false),
-
-  }).actions(self =>({
+  })
+  .actions((self) => ({
     setAuthenticated(value: boolean) {
       self.isAuthenticated = value
     },
-    setEmail(newEmail: string) {
-      self.email = newEmail
-  },
-  setPassword(newPassword: string) {
-    self.password = newPassword
-  },
-}))
+    setEmail(value: string) {
+      self.email = value
+    },
+    setPassword(value: string) {
+      self.password = value
+    },
+    setPharmacy(value: string) {
+      self.assignedPharmacy = value
+    },
+    setFirstName(value: string) {
+      self.firstName = value
+    },
+    setLastName(value: string) {
+      self.lastName = value
+    },
+    setPhoneNumber(value: string) {
+      self.phoneNumber = value
+    },
+    setAddress(value: string) {
+      self.assignedHomeAddress = value
+    },
+  }))
   .actions((self) => ({
-    login: flow(function*() {
+    login: flow(function* () {
       self.setAuthenticated(true)
-       /* Firebase.auth().signInWithEmailAndPassword(self.email, self.password)
+      /* Firebase.auth().signInWithEmailAndPassword(self.email, self.password)
         .then((userCredential) => {
           // Signed in 
           // save(self.email, self.password)
@@ -40,20 +59,23 @@ export const UserModel = types
           self.status = error.message;
           // ..
         }); */
-      }),
-    logout: flow(function*() {
-      Firebase.auth().signOut().then(() => {
-        // Sign-out successful.
-        self.setAuthenticated(false)
-      }).catch((error) => {
-        self.status = error.message;
-      });
     }),
-    register: flow(function*() {
+    logout: flow(function* () {
+      Firebase.auth()
+        .signOut()
+        .then(() => {
+          // Sign-out successful.
+          self.setAuthenticated(false)
+        })
+        .catch((error) => {
+          self.status = error.message
+        })
+    }),
+    register: flow(function* () {
       try {
         Firebase.auth().createUserWithEmailAndPassword(self.email, self.password)
       } catch (err) {
-        self.status=err.message;
+        self.status = err.message
       }
     }),
   }))

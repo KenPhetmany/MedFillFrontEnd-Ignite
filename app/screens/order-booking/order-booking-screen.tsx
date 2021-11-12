@@ -1,25 +1,58 @@
-import React from "react"
+import React, { useState } from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle } from "react-native"
-import { Screen, Text } from "../../components"
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../../models"
-import { color } from "../../theme"
-
-const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
-  flex: 1,
-}
+import { ViewStyle, View } from "react-native"
+import { Button, Screen, Text, TextField } from "../../components"
+import { useNavigation } from "@react-navigation/native"
+import { useStores } from "../../models"
+import DatePicker from "react-native-date-picker"
+import { CARD, FORM } from "./../../theme/coreStyles"
 
 export const OrderBookingScreen = observer(function OrderBookingScreen() {
-  // Pull in one of our MST stores
-  // const { someStore, anotherStore } = useStores()
+  const { order, user } = useStores()
+  const navigation = useNavigation()
+  const [date, setDate] = useState(new Date())
+  const [open, setOpen] = useState(false)
 
-  // Pull in navigation via hook
-  // const navigation = useNavigation()
+  const orderConfirm = () => {
+    order.setOrderDate(date.toString())
+    order.setPharmacy(user.assignedPharmacy)
+    navigation.navigate("orderDetails")
+  }
+
   return (
-    <Screen style={ROOT} preset="scroll">
-      <Text preset="header" text="" />
+    <Screen preset="scroll">
+      <View style={CARD}>
+        <View style={FORM}>
+          <TextField
+            label="Your currently assigned Pharmacy:"
+            value={user.assignedPharmacy}
+            editable={false}
+          ></TextField>
+          <Button
+            text="Change Pharmacy?"
+            onPress={() => navigation.navigate("findAChemist")}
+          ></Button>
+        </View>
+      </View>
+      <View style={CARD}>
+        <View style={FORM}>
+          <DatePicker
+            modal
+            open={open}
+            date={date}
+            onConfirm={(date) => {
+              setOpen(false)
+              setDate(date)
+            }}
+            onCancel={() => {
+              setOpen(false)
+            }}
+          />
+          <TextField label="Current booking:" value={date.toString()} editable={false}></TextField>
+          <Button text="Set A booking" onPress={() => setOpen(true)} />
+        </View>
+      </View>
+      <Button text="Proceed to Confirmation" onPress={() => orderConfirm()} />
     </Screen>
   )
 })

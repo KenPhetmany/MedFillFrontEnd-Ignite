@@ -32,13 +32,24 @@ export const HomeScreen = observer(function HomeScreen() {
     navigation.navigate("shoppingCart")
   }
   const orderInstore = () => {
-    order.setOrderType("Instore")
-    console.log(order.orderType)
-    navigation.navigate("shoppingCart")
+    // order.setOrderType("Instore")
+    console.log(order.orderPrescription)
+    // navigation.navigate("shoppingCart")
+  }
+
+  const setInitialValues = () => {
+    user.setFirstName("Ken")
+    user.setLastName("Phetmany")
+    user.setLastName("Phetmany")
+    user.setPhoneNumber("0132441234")
+    user.setEmail("kphetmany@gmail.com")
+    user.setAddress(" 15 Broadway, Ultimo NSW 2007")
+    order.setOrderPrescription(["Panadol", "Fisiocrem", "Valdaxon"])
   }
 
   return (
     <Screen preset="scroll">
+      {setInitialValues()}
       <View style={CARD}>
         <Text preset="bold" text="TODO: Add adding a patient feature and then listing them here" />
         <View>
