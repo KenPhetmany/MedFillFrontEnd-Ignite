@@ -61,7 +61,9 @@ export const UserModel = types
         }); */
     }),
     logout: flow(function* () {
-      Firebase.auth()
+      self.setAuthenticated(false)
+      console.log(self.isAuthenticated)
+      /* Firebase.auth()
         .signOut()
         .then(() => {
           // Sign-out successful.
@@ -69,7 +71,7 @@ export const UserModel = types
         })
         .catch((error) => {
           self.status = error.message
-        })
+        }) */
     }),
     register: flow(function* () {
       try {

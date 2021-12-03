@@ -1,7 +1,7 @@
 import React from "react"
 import { observer } from "mobx-react-lite"
 import { View, VirtualizedList, FlatList } from "react-native"
-import { Screen, Text, Button } from "../../components"
+import { Screen, Text, Button, TextField } from "../../components"
 import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../../models"
 import { CARD } from "../../theme/coreStyles"
@@ -16,7 +16,7 @@ export const HomeScreen = observer(function HomeScreen() {
     const patient: Patient = item
     return (
       <View key={item.id}>
-        <Button key={patient.id} text="IM testingf" />
+        <Button key={patient.id} text="Patient #1" />
       </View>
     )
   }
@@ -51,7 +51,7 @@ export const HomeScreen = observer(function HomeScreen() {
     <Screen preset="scroll">
       {setInitialValues()}
       <View style={CARD}>
-        <Text preset="bold" text="TODO: Add adding a patient feature and then listing them here" />
+        <Text preset="bold" text="Your patients" />
         <View>
           <VirtualizedList
             keyExtractor={(item) => {
@@ -66,14 +66,12 @@ export const HomeScreen = observer(function HomeScreen() {
         <Button text="Add a patient" onPress={() => navigation.navigate("addAPatient")} />
       </View>
       <View style={CARD}>
-        <Text preset="bold" text="TODO: Add geocode feature to find chemist" />
+        <Text preset="bold" text="Current chemist" />
+        <TextField editable={false} value={user.assignedPharmacy} />
         <Button text="Find your chemist" onPress={() => navigation.navigate("findAChemist")} />
       </View>
       <View style={CARD}>
-        <Text
-          preset="bold"
-          text="TODO: Add a single ordering screen for these features (they just change the state of order.type)"
-        />
+        <Text preset="bold" text="Start your order" />
         <Button text="Click and collect" onPress={(e) => orderClick()} />
         <Button text="Delivery" onPress={(e) => orderDelivery()} />
         <Button text="Scan in-store" onPress={(e) => orderInstore()} />

@@ -19,6 +19,7 @@ import {
   OrderConfirmScreen,
 } from "../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { AddAPatientScreen } from "./../screens/add-a-patient/add-a-patient-screen"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -52,6 +53,7 @@ const HomeStackScreen = () => {
       <HomeStack.Screen name="orderBooking" component={OrderBookingScreen} />
       <HomeStack.Screen name="orderDetails" component={OrderDetailsScreen} />
       <HomeStack.Screen name="orderConfirm" component={OrderConfirmScreen} />
+      <HomeStack.Screen name="addAPatient" component={AddAPatientScreen} />
     </HomeStack.Navigator>
   )
 }
@@ -79,7 +81,6 @@ export const MainNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="home" component={HomeStackScreen} />
-      <Tab.Screen name="prescription" component={PrescriptionStackScreen} />
       <Tab.Screen name="profile" component={ProfileStackScreen} />
     </Tab.Navigator>
   )

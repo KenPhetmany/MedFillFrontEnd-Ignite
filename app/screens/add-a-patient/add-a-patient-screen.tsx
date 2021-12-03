@@ -37,16 +37,6 @@ export const AddAPatientScreen = observer(function AddAPatientScreen() {
             )
           }}
         />
-        <Button
-          text="check patients via console log"
-          onPress={() => console.log(patientStore.getPatient())}
-        />
-        <Button
-          text="clear all patients"
-          onPress={() => {
-            patientStore.clearPatients()
-          }}
-        />
       </View>
       <Button text="Go back" onPress={() => navigation.navigate("home")} />
     </Screen>
