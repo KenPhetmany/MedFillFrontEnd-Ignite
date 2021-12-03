@@ -5,21 +5,15 @@ import { Screen, Text, Button, TextField } from "../../components"
 import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../../models"
 import { CARD } from "../../theme/coreStyles"
-import { Patient } from "../../models/patient/patient"
 import { values } from "mobx"
 
 export const HomeScreen = observer(function HomeScreen() {
   const { user, patientStore, order } = useStores()
   const navigation = useNavigation()
 
-  const renderPatient = ({ item }) => {
-    const patient: Patient = item
-    return (
-      <View key={item.id}>
-        <Button key={patient.id} text="Patient #1" />
-      </View>
-    )
-  }
+  const PatientView = observer((props) => (
+    <Button text={props.patient.firstName} onPress={() => console.log(patientStore.patients)} />
+  ))
 
   const orderClick = () => {
     order.setOrderType("Click and Collect")
@@ -53,15 +47,9 @@ export const HomeScreen = observer(function HomeScreen() {
       <View style={CARD}>
         <Text preset="bold" text="Your patients" />
         <View>
-          <VirtualizedList
-            keyExtractor={(item) => {
-              return item.id
-            }}
-            data={patientStore.patients}
-            renderItem={renderPatient}
-            getItemCount={patientStore.getPatientCount}
-            getItem={patientStore.getPatient}
-          />
+          {values(patientStore.patients).map((patient) => (
+            <PatientView patient={patient} key={patient.id} />
+          ))}
         </View>
         <Button text="Add a patient" onPress={() => navigation.navigate("addAPatient")} />
       </View>

@@ -1,7 +1,6 @@
 import { values } from "mobx"
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import { PatientModel } from "./../patient/patient"
-
 /**
  * Model description here for TypeScript hints.
  */
@@ -11,15 +10,8 @@ export const PatientStoreModel = types
     patients: types.optional(types.map(PatientModel), {}),
   })
   .actions((self) => ({
-    addPatient(id: string, fName: string, lName: string) {
-      self.patients.set(
-        id,
-        PatientModel.create({
-          id: id,
-          firstName: fName,
-          lastName: lName,
-        }),
-      )
+    addPatient(id, firstName, lastName) {
+      self.patients.set(id, PatientModel.create({ firstName, lastName }))
     },
     getPatientCount() {
       return values(self.patients).length

@@ -6,8 +6,8 @@ import { Instance, SnapshotOut, types } from "mobx-state-tree"
 export const PatientModel = types
   .model("Patient")
   .props({
-    id: types.maybe(types.number),
     firstName: types.maybe(types.string),
+    id: types.maybe(types.string),
     lastName: types.maybe(types.string),
   })
   .actions((self) => ({

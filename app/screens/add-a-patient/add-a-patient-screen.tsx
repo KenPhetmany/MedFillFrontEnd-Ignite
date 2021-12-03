@@ -30,14 +30,11 @@ export const AddAPatientScreen = observer(function AddAPatientScreen() {
         <Button
           text="Add Patient"
           onPress={() => {
-            patientStore.addPatient(
-              Math.random().toString(12).substring(0),
-              patient.firstName,
-              patient.lastName,
-            )
+            patientStore.addPatient(Math.random(), patient.firstName, patient.lastName)
           }}
         />
       </View>
+      <Button text="Clear Patients" onPress={() => console.log(patientStore.clearPatients())} />
       <Button text="Go back" onPress={() => navigation.navigate("home")} />
     </Screen>
   )
