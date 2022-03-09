@@ -17,6 +17,7 @@ import {
   OrderDetailsScreen,
   OrderBookingScreen,
   OrderConfirmScreen,
+  PrescriptionsScreen,
 } from "../screens"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { AddAPatientScreen } from "./../screens/add-a-patient/add-a-patient-screen"
@@ -64,7 +65,7 @@ const ProfileStackScreen = () => {
       <ProfileStack.Screen name="profile" component={ProfileScreen} />
       <ProfileStack.Screen name="settings" component={SettingsScreen} />
       <ProfileStack.Screen name="user" component={SettingsAccountDetailsUserScreen} />
-      <ProfileStack.Screen name="patient" component={SettingsAccountDetailsPatientsScreen} />
+      <ProfileStack.Screen name="patients" component={SettingsAccountDetailsPatientsScreen} />
     </ProfileStack.Navigator>
   )
 }
@@ -72,7 +73,7 @@ const ProfileStackScreen = () => {
 const PrescriptionStackScreen = () => {
   return (
     <PrescriptionStack.Navigator>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="orders" component={PrescriptionsScreen} />
     </PrescriptionStack.Navigator>
   )
 }
@@ -81,6 +82,7 @@ export const MainNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="home" component={HomeStackScreen} />
+      <Tab.Screen name="orders" component={PrescriptionStackScreen} />
       <Tab.Screen name="profile" component={ProfileStackScreen} />
     </Tab.Navigator>
   )

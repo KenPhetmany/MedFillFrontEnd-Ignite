@@ -1,7 +1,6 @@
 /* eslint-disable no-cond-assign */
 import { flow, Instance, SnapshotOut, types } from "mobx-state-tree"
-import Firebase from "./../../config/Firebase"
-import { save, load } from "../../utils/storage"
+import firebase from "./../../config/firebase.js"
 
 /**
  * Model description here for TypeScript hints.

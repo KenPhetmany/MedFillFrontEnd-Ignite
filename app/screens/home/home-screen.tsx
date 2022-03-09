@@ -45,7 +45,7 @@ export const HomeScreen = observer(function HomeScreen() {
     <Screen preset="scroll">
       {setInitialValues()}
       <View style={CARD}>
-        <Text preset="bold" text="Your patients" />
+        <Text preset="bold" text="Current Patient:" />
         <View>
           {values(patientStore.patients).map((patient) => (
             <PatientView patient={patient} key={patient.id} />

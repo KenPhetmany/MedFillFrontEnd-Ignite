@@ -6,11 +6,6 @@ import { Screen, Text } from "../../components"
 // import { useStores } from "../../models"
 import { color } from "../../theme"
 
-const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
-  flex: 1,
-}
-
 export const PrescriptionsScreen = observer(function PrescriptionsScreen() {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
@@ -18,8 +13,8 @@ export const PrescriptionsScreen = observer(function PrescriptionsScreen() {
   // Pull in navigation via hook
   // const navigation = useNavigation()
   return (
-    <Screen style={ROOT} preset="scroll">
-      <Text preset="header" text="" />
+    <Screen preset="scroll">
+      <Text preset="header" text="List of orders go here" />
     </Screen>
   )
 })
